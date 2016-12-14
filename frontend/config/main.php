@@ -12,6 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'homeUrl' => '/',
+    'language' => 'ru-RU',
     'components' => [
         'request' => [
             'baseUrl' => '',
@@ -46,6 +47,11 @@ return [
             ],
         ],
 
+    ],
+    'modules' => [
+        'manager' => [
+            'class' => 'frontend\modules\manager\manager',
+        ],
     ],
     'params' => $params,
 ];

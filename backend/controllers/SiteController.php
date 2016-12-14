@@ -10,7 +10,7 @@ use common\models\LoginForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends AdminController
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+            /*'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
@@ -28,10 +28,13 @@ class SiteController extends Controller
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => [function() {
+                            return true;
+                        }],
                     ],
                 ],
             ],
+            */
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -46,6 +49,7 @@ class SiteController extends Controller
      */
     public function actions()
     {
+
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
