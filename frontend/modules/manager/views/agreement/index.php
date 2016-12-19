@@ -24,10 +24,50 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-
-            'uid',
             'name',
-            'text:ntext',
+            [
+                'attribute'=>'uid',
+                'format' => 'raw',
+                'value' => function($data) {
+                    return  $data->user->lastname
+                    .' '.$data->user->username
+                    .' '.$data->user->patronymic
+                    .' <br>'.(!empty($data->user->email) ? $data->user->email : '')
+                    . (!empty($data->user->phone1) ? '<br>(т. '.$data->user->phone1.')' : '');
+                }
+            ],
+            [
+                'attribute'=>'collateralTypesId',
+                'format' => 'raw',
+                'value' => function($data) {
+                    return  $data->collateral->name;
+                }
+            ],
+
+            'createdAt',
+
+            [
+                'attribute'=>'periodDays',
+                'format' => 'raw',
+                'value' => function($data) {
+                    return  $data->periodDays .' дн. ('.$data->returnDate .')';
+                }
+            ],
+
+            'actualDateOfReturn',
+            'actualTermOfTheLoan',
+            'procentOfOneDay',
+            'actualAmountOfInterest',
+            'totalDebt',
+            'actualDebtRepayment',
+            'debt',
+            'actualIncome',
+
+            'actualProfit',
+
+
+
+            //'text:ntext',
             'sum',
             // 'procentOfOneDay',
             // 'profit',
@@ -35,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'makerUserId',
             // 'ownerUserId',
             // 'amortizationDate',
-            // 'createdAt',
+
             // 'updatedAt',
             // 'deletedAt',
             // 'status',

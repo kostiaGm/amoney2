@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -30,12 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function($data) {
-                    return $data->lastname.' '.$data->username.' '.$data->patronymic;
+                    return $data->lastname
+                    .' '.$data->username
+                    .' '.$data->patronymic
+                    .' <br>'.(!empty($data->email) ? $data->email : '')
+                    . (!empty($data->phone1) ? '<br>(т. '.$data->phone1.')' : '')  ;
                 }
             ],
 
-             'email:email',
-             'status',
+
+
             // 'created_at',
             // 'updated_at',
             // 'lastname',

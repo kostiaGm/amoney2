@@ -48,6 +48,12 @@ class AgreementSearch extends Agreement
 
 
         $query->orderBy(["createdAt"=>SORT_DESC]);
+
+        $query
+            ->joinWith('user')
+            ->joinWith('collateral')
+            ->orderBy(['createdAt'=>SORT_DESC]);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

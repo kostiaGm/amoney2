@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\models\User;
 use Yii;
 
 /**
@@ -15,7 +16,6 @@ use Yii;
  * @property double $procentOfOneDay
  * @property double $profit
  * @property integer $periodDays
-
  * @property string $amortizationDate
  * @property string $createdAt
  * @property string $updatedAt
@@ -41,7 +41,7 @@ class Agreement extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'periodDays','collateralTypesId'], 'required'],
+            [['uid', 'periodDays', 'collateralTypesId'], 'required'],
             [['uid', 'periodDays', 'collateralTypesId', 'status', 'actualTermOfTheLoan'], 'integer'],
             [['text', 'newCollateralType'], 'string'],
             [['sum', 'procentOfOneDay', 'profit', 'actualAmountOfInterest', 'debt', 'totalDebt', 'actualDebtRepayment', 'actualIncome', 'actualProfit'], 'number'],
@@ -82,6 +82,16 @@ class Agreement extends \yii\db\ActiveRecord
             'actualProfit' => Yii::t('app', 'Actual Profit'),
             'debt' => Yii::t('app', 'Debt'),
         ];
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'uid']);
+    }
+
+    public function getCollateral()
+    {
+        return $this->hasOne(CollateralTypes::className(), ['id' => 'collateralTypesId']);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\MaskedInput;
 /* @var $this yii\web\View */
 /* @var $model common\models\Agreement */
 /* @var $form yii\widgets\ActiveForm */
@@ -15,7 +15,16 @@ if ($model->uid) {
 }
 
 $collateral = \yii\helpers\ArrayHelper::map(\common\models\CollateralTypes::find()->all(), 'id', 'name');
-
+$this->registerJs("
+/*
+ $('#agreement-sum').mask(\"000000000000000.00\", {reverse: true});
+ $('#agreement-procentofoneday').mask(\"000000000000000.00\", {reverse: true});
+ 
+ $('.agreement-form form').on('beforeValidateAttribute'), function(e) {
+ 
+ }); */
+ 
+ ", \yii\web\View::POS_READY);
 ?>
 
 <div class="agreement-form">

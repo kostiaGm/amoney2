@@ -104,9 +104,14 @@ class TransactionsController extends Controller
 
         if (!$model_->save()) {
             var_dump($model_->getErrors());
+        } else {
+            $user = User::findOne($model_->uid);
+            $user->dept = $user->dept +  $model_->debt ;
         }
 
     }
+
+
 
     /**
      * Updates an existing Transactions model.

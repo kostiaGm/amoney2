@@ -36,8 +36,11 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => Yii::t('app', 'Users'), 'url' => ['/manager/users']],
+        ['label' => Yii::t('app', 'Agreement'), 'url' => ['/manager/agreement']],
+
+
+
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -69,21 +72,8 @@ AppAsset::register($this);
         <hr>
         <div class="row">
 
-            <div class="col-md-3">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <?= Html::a("Договора", ["/manager/agreement"]) ?>
 
-                    </li>
-                    <li class="list-group-item">
-                        <?= Html::a("Пользователи", ["/manager/users"]) ?>
-
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class=" col-md-9">
+            <div class=" col-md-12">
 
 
                 <?= $content ?>

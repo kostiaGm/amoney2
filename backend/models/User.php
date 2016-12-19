@@ -54,7 +54,7 @@ class User extends \yii\db\ActiveRecord
         return [
             [['username', 'email'], 'required'],
             [['status', 'created_at', 'updated_at', 'passportSeria', 'passportNumber', 'inn'], 'integer'],
-            [['birthday', 'passportDate', 'photo'], 'safe'],
+            [['birthday', 'passportDate', 'photo', 'dept'], 'safe'],
             [['passportInfo', 'address', 'role'], 'string'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'lastname', 'patronymic',  'phone1', 'phone2', 'phone3'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
@@ -116,6 +116,7 @@ class User extends \yii\db\ActiveRecord
             'phone2' => Yii::t('app', 'Phone2'),
             'phone3' => Yii::t('app', 'Phone3'),
             'role' => Yii::t('app', 'Role'),
+            'dept' => Yii::t('app', 'Dept'),
         ];
     }
 
